@@ -231,6 +231,7 @@ AddEventHandler('dann_citywork:GetResults', function()
 			header = 'Effeciency : '..RandEff..'%',
 			context = 'Result : No repairs required',
 		})
+	TriggerEvent('nh-context:createMenu', menu)
         exports.mythic_notify:SendAlert('inform', 'This unit doesn\'t require repairs')
         JobStatus = 1
         RemoveAllBlips()
