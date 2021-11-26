@@ -126,7 +126,6 @@ end)
 
 AddEventHandler('dann_citywork:WorkArea', function()
     Status = 3
-    print(location.Area)
     CreateThread(function()
         while true do
             local dist = #(GetEntityCoords(PlayerPedId()) - location.Area)
@@ -265,7 +264,6 @@ AddEventHandler('dann_citywork:AttempFix', function()
     ClearPedTasks(PlayerPedId())
     if not partCollected then
         chance = math.random(1, 10)
-        print(chance)
         if chance > 2 then
             fetchingPart = true
             exports.mythic_notify:SendAlert('error', 'Shit, looks like you broke a piece off. Get a spare from the van and fix it')
@@ -365,7 +363,7 @@ function attachAProp(attachModelSent,boneNumberSent,x,y,z,xR,yR,zR)
 	local bone = GetPedBoneIndex(PlayerPedId(), boneNumberSent)
 	RequestModel(attachModel)
 	while not HasModelLoaded(attachModel) do
-		Citizen.Wait(100)
+		Wait(100)
 	end
 	attachedProp = CreateObject(attachModel, 1.0, 1.0, 1.0, 1, 1, 0)
 	AttachEntityToEntity(attachedProp, PlayerPedId(), bone, x, y, z, xR, yR, zR, 1, 1, 0, 0, 2, 1)
@@ -381,14 +379,14 @@ function loadModel(modelName)
     RequestModel(GetHashKey(modelName))
     while not HasModelLoaded(GetHashKey(modelName)) do
         RequestModel(GetHashKey(modelName))
-        Citizen.Wait(1)
+        Wait(1)
     end
 end
 
 function loadAnimDict(dict)
     while (not HasAnimDictLoaded(dict)) do
         RequestAnimDict(dict)
-        Citizen.Wait(5)
+        Wait(5)
     end
 end
 
@@ -466,3 +464,4 @@ function RemoveAllBlips()
 	end
 	SetBlips = {}
 end
+
