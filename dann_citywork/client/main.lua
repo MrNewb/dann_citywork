@@ -212,16 +212,16 @@ AddEventHandler('dann_citywork:GetResults', function()
     table.insert(menu, {
         id = 0,
         header = "LS Water & Power Clipboard",
-        txt = ""
+        context = ""
     })
 
     if RandEff <= 75 then
         table.insert(menu, {
 			id = 1,
 			header = 'Effeciency : '..RandEff..'%',
-			txt = 'Result : Repair Required',
+			context = 'Result : Repair Required',
 		})
-        TriggerEvent('nh-context:sendMenu', menu)
+        TriggerEvent('nh-context:createMenu', menu)
         Wait(5000)
         TriggerEvent('dann_citywork:WorkArea')
         JobType = 'attempt'
@@ -229,7 +229,7 @@ AddEventHandler('dann_citywork:GetResults', function()
         table.insert(menu, {
 			id = 1,
 			header = 'Effeciency : '..RandEff..'%',
-			txt = 'Result : No repairs required',
+			context = 'Result : No repairs required',
 		})
         exports.mythic_notify:SendAlert('inform', 'This unit doesn\'t require repairs')
         JobStatus = 1
